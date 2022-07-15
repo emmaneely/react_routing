@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { APIService } from "../services/API.service";
 import { Loading } from "../components/Loading";
 
@@ -22,17 +23,14 @@ export const PeopleView = (props) => {
 
     return (
         <main className="my-4">
-            <h1>People</h1>
+            <h1>People ({people.length})</h1>
             <div className="row p-4">
                 {people.map(
-                    ({ id, name, gender, age }) => (
+                    ({ id, name }) => (
                         <div key={id} className="card col-sm-4">
                             <div className="card-body">
                                 <h3>{name}</h3>
-                                <ul>
-                                    <li>Gender: {gender}</li>
-                                    <li>Age: {age}</li>
-                                </ul>
+                                <Link to={`${id}`}>Person Details</Link>
                             </div>
                         </div>
                     )

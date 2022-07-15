@@ -3,7 +3,7 @@ export class APIService {
     static controller = new AbortController();
 
     static async getList(listName) {
-        let res = await fetch (
+        let res = await fetch(
             `${this.STUDIO_GHIBLI_URL}/${listName.toLowerCase()}`,
             { signal: this.controller.signal }
         );
@@ -14,4 +14,18 @@ export class APIService {
             return false;
         }
     }
+
+    static async getItem(listName, id) {
+        let res = await fetch(
+            `${this.STUDIO_GHIBLI_URL}/${listName.toLowerCase()}/${id}`,
+            { signal: this.controller.signal }
+        );
+
+        if (res.ok) {
+            return await res.json();
+        } else {
+            return false;
+        }
+    }
+
 }
